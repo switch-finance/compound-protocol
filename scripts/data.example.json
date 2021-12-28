@@ -1,0 +1,10 @@
+{
+	"devWallet": {
+		"address": "",
+		"constructorArgs": [],
+		"upgradedAddress": "",
+		"deployed": true,
+		"upgraded": true,
+		"verified": true
+	}
+}
