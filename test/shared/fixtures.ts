@@ -106,7 +106,7 @@ export const comptrollerFixture: Fixture<ComptrollerFixture> = async function ([
 
 
     const interestRateModelFactory = await ethers.getContractFactory('WhitePaperInterestRateModel')
-    const interestRateModel = (await interestRateModelFactory.deploy(interestBaseRate, interestPerYearRate)) as WhitePaperInterestRateModel
+    const interestRateModel = (await interestRateModelFactory.deploy(2102400, interestBaseRate, interestPerYearRate)) as WhitePaperInterestRateModel
 
     console.log(`
         comp: ${comp.address},

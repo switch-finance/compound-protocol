@@ -1,0 +1,127 @@
+{
+  "devWallet": {
+    "address": "0x2d4e68cAF597d1e980b5e8684164460161f8C29b",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": true
+  },
+  "USDT": {
+    "contractName": "ERC20Harness",
+    "address": "0x79484D7d5b44C7f87536787D46A4b495983AAb9B",
+    "constructorArgs": [
+      "100000000000000000000000000000",
+      "USDT Token",
+      "18",
+      "USDT"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "USDC": {
+    "contractName": "ERC20Harness",
+    "address": "0xE4780F8a22659e2Fa3dD4281613ED48325ead5C0",
+    "constructorArgs": [
+      "100000000000000000000000000000",
+      "USDC Token",
+      "18",
+      "USDC"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "Unitroller": {
+    "contractName": "Unitroller",
+    "address": "0x86Ba028B78Ba18A4Fcb623b0c51F9628D3Ae5e29",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "ComptrollerG1": {
+    "contractName": "ComptrollerG1",
+    "address": "0xccd5419530FaCb05842807f6402A0010546AD9c5",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "SimplePriceOracle": {
+    "contractName": "SimplePriceOracle",
+    "address": "0xD7aC3D215C11f77F615dfAF5250d54cFb7F1a3D1",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "WhitePaperInterestRateModel": {
+    "contractName": "WhitePaperInterestRateModel",
+    "address": "0x9B237C9Fa15e715518B4a979969aB50dd4655a2c",
+    "constructorArgs": [
+      "10512000",
+      "50000000000000000",
+      "120000000000000000"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "cUSDTDelegate": {
+    "contractName": "CErc20Delegate",
+    "address": "0xe09A0EaDF737b5Cf6946ac184d6bF19B376190aB",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "cUSDT": {
+    "contractName": "CErc20Delegator",
+    "address": "0xa52bbBc4839509a34cd64Cb9EF9639c854B2555d",
+    "constructorArgs": [
+      "${USDT.address}",
+      "${ComptrollerG1.address}",
+      "${WhitePaperInterestRateModel.address}",
+      "214808935246542489124881361",
+      "Venus USDT",
+      "vUSDT",
+      "8",
+      "${devWallet.address}",
+      "${cUSDTDelegate.address}",
+      "0x"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "cUSDC": {
+    "contractName": "CErc20Delegator",
+    "address": "0x02b25ecb7BC667551Ea0972355033e0D88a3CcA9",
+    "constructorArgs": [
+      "${USDC.address}",
+      "${ComptrollerG1.address}",
+      "${WhitePaperInterestRateModel.address}",
+      "212401102719818641648155779",
+      "Venus USDC",
+      "vUSDC",
+      "8",
+      "${devWallet.address}",
+      "${cUSDTDelegate.address}",
+      "0x"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  }
+}

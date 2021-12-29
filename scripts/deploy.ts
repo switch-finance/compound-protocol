@@ -1,7 +1,7 @@
 const { ethers, upgrades, network } = require("hardhat");
 import {sleep} from "sleep-ts";
-import fs from "fs";
-import path from "path";
+import * as fs from 'fs'
+import * as path from "path";
 let chainId = 0;
 let filePath = path.join(__dirname, `.data.json`);
 let data: any = {

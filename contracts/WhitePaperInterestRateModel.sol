@@ -10,13 +10,14 @@ import "./SafeMath.sol";
   */
 contract WhitePaperInterestRateModel is InterestRateModel {
     using SafeMath for uint;
+    address public admin;
 
-    event NewInterestParams(uint baseRatePerBlock, uint multiplierPerBlock);
+    event NewInterestParams(uint blocksPerYear, uint baseRatePerBlock, uint multiplierPerBlock);
 
     /**
      * @notice The approximate number of blocks per year that is assumed by the interest rate model
      */
-    uint public constant blocksPerYear = 2102400;
+    uint public blocksPerYear = 2102400;
 
     /**
      * @notice The multiplier of utilization rate that gives the slope of the interest rate
@@ -33,11 +34,18 @@ contract WhitePaperInterestRateModel is InterestRateModel {
      * @param baseRatePerYear The approximate target base APR, as a mantissa (scaled by 1e18)
      * @param multiplierPerYear The rate of increase in interest rate wrt utilization (scaled by 1e18)
      */
-    constructor(uint baseRatePerYear, uint multiplierPerYear) public {
+    constructor(uint blocksYear, uint baseRatePerYear, uint multiplierPerYear) public {
+        admin = msg.sender;
+        configure(blocksYear, baseRatePerYear, multiplierPerYear);
+    }
+
+    function configure(uint blocksYear, uint baseRatePerYear, uint multiplierPerYear) public {
+        require(msg.sender == admin, 'forbidden');
+        blocksPerYear = blocksYear;
         baseRatePerBlock = baseRatePerYear.div(blocksPerYear);
         multiplierPerBlock = multiplierPerYear.div(blocksPerYear);
 
-        emit NewInterestParams(baseRatePerBlock, multiplierPerBlock);
+        emit NewInterestParams(blocksPerYear, baseRatePerBlock, multiplierPerBlock);
     }
 
     /**

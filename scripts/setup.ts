@@ -1,6 +1,6 @@
 import { ethers, network } from "hardhat";
-import fs from "fs";
-import path from "path";
+import * as fs from 'fs'
+import * as path from "path";
 import {sleep} from "sleep-ts";
 let chainId = 0;
 let dataPath = path.join(__dirname, `.data.json`);

@@ -51,6 +51,10 @@ const config: HardhatUserConfig = {
       url: `https://ropsten.infura.io/v3/${data.InfuraApiKey}`,
       accounts: [data.PrivateKey]
     },
+    rinkeby: {
+      url: `https://rinkeby.infura.io/v3/${data.InfuraApiKey}`,
+      accounts: [data.PrivateKey]
+    },
     bsctestnet: {
       url: `https://data-seed-prebsc-1-s1.binance.org:8545/`,
       accounts: [data.PrivateKey]
