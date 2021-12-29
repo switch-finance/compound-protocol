@@ -9,7 +9,7 @@ import { CompScenario } from '../typechain/CompScenario'
 import { ERC20Harness } from '../typechain/ERC20Harness'
 import { CErc20Harness } from '../typechain/CErc20Harness'
 import { expect } from './shared/expect'
-import { comptrollerFixture, bigNumber18, bigNumber17, bigNumber16 } from './shared/fixtures'
+import { comptrollerFixture, bigNumber18, bigNumber17, bigNumber16 } from './shared/fixturesHarness'
 
 const createFixtureLoader = waffle.createFixtureLoader
 
@@ -33,7 +33,7 @@ describe('Comptroller', async () => {
     before('create fixture loader', async () => {
         [wallet, user1, user2, user3, user4] = await (ethers as any).getSigners()
         loadFixTure = createFixtureLoader([wallet])
-        ; ({ comptroller, priceOracle, comp, unitroller, interestRateModel } = await loadFixTure(comptrollerFixture));
+        ; ({ comp, comptroller, priceOracle, unitroller, interestRateModel } = await loadFixTure(comptrollerFixture));
 
         let testTokenFactory = await ethers.getContractFactory('ERC20Harness')
         usdt = (await testTokenFactory.deploy(
@@ -46,8 +46,8 @@ describe('Comptroller', async () => {
     })
 
     beforeEach('deploy Comptroller', async () => {
-        const vTokenFactory = await ethers.getContractFactory('CErc20Harness')
-        cusdt = (await vTokenFactory.deploy(
+        const cTokenFactory = await ethers.getContractFactory('CErc20Harness')
+        cusdt = (await cTokenFactory.deploy(
             usdt.address,
             comptroller.address,
             interestRateModel.address,
@@ -62,7 +62,7 @@ describe('Comptroller', async () => {
         await comptroller._supportMarket(cusdt.address)
     })
 
-    describe('#getMintable', async () => {
+    describe('#base', async () => {
         it('oracle', async () => {
             expect(await comptroller.oracle()).to.eq(priceOracle.address)
         })
@@ -146,13 +146,21 @@ describe('Comptroller', async () => {
 
         })
 
-        it('success', async () => {
+        it('failure', async () => {
             let pbalance1 = await usdt.balanceOf(cusdt.address)
             let balance1 = await usdt.balanceOf(user1.address)
             let cbalance1 = await cusdt.balanceOf(user1.address)
             console.log('pbalance1, balance1, cbalance1:', pbalance1.toString(), balance1.toString(), cbalance1.toString())
             
-            await cusdt.connect(user1).borrow(bigNumber18.mul(10))
+            let tx = await cusdt.connect(user1).borrow(bigNumber18.mul(10))
+            let receipt = await tx.wait()
+            for(let e of receipt.events) {
+                if(e.event == 'Failure') {
+                    // console.log(e)
+                    expect(e.event).to.equal('Failure');
+                    break;
+                }
+            }
             
             let pbalance2 = await usdt.balanceOf(cusdt.address)
             let balance2 = await usdt.balanceOf(user1.address)

@@ -1,13 +1,13 @@
 import { BigNumber, Wallet } from 'ethers'
 import { ethers } from 'hardhat'
 import { Unitroller } from '../../typechain/Unitroller'
-import { ComptrollerG1 } from '../../typechain/ComptrollerG1'
+import { ComptrollerHarness } from '../../typechain/ComptrollerHarness'
 import { SimplePriceOracle } from '../../typechain/SimplePriceOracle'
 import { Comp } from '../../typechain/Comp'
+import { CompScenario } from '../../typechain/CompScenario'
 import { ERC20Harness } from '../../typechain/ERC20Harness'
-import { CErc20Delegate } from '../../typechain/CErc20Delegate'
-import { CErc20Delegator } from '../../typechain/CErc20Delegator'
-import { WhitePaperInterestRateModel } from '../../typechain/WhitePaperInterestRateModel'
+import { InterestRateModelHarness } from '../../typechain/InterestRateModelHarness'
+import { CErc20Harness } from '../../typechain/CErc20Harness'
 import { Fixture, deployMockContract, MockContract } from 'ethereum-waffle'
 
 export const bigNumber18 = BigNumber.from("1000000000000000000")  // 1e18
@@ -22,78 +22,34 @@ export async function getBlockNumber() {
     return blockNumber;
 }
 
-export async function createToken(_initialAmount:BigNumber, _decimalUnits:number, _tokenName:string, _tokenSymbol:string) {
-    let testTokenFactory = await ethers.getContractFactory('ERC20Harness')
-    let res = (await testTokenFactory.deploy(
-        _initialAmount,
-        _tokenName,
-        _decimalUnits,
-        _tokenSymbol
-        )) as ERC20Harness
-    return res
-}
-
-export async function createCToken(
-    underlying:string,
-    comptroller:string,
-    interestRateModel:string,
-    initialExchangeRateMantissa:BigNumber,
-    name:string,
-    symbol:string,
-    decimals:number,
-    admin:string
-) {
-    let delegateFactory = await ethers.getContractFactory('CErc20Delegate')
-    let cDelegate = (await delegateFactory.deploy())
-    let delegatorFactory = await ethers.getContractFactory('CErc20Delegator')
-    let data = "0x"
-    let reserveFactor = bigNumber16.mul(25)
-    let cToken = (await delegatorFactory.deploy(
-        underlying,
-        comptroller,
-        interestRateModel,
-        initialExchangeRateMantissa,
-        name,
-        symbol,
-        decimals,
-        admin,
-        cDelegate.address,
-        data
-    )) as CErc20Delegator
-    
-    await cToken._setImplementation(cDelegate.address, false, data);
-    await cToken._setReserveFactor(reserveFactor);
-    return cToken
-}
-
 interface ComptrollerFixture {
-    comp: Comp
-    comptroller: ComptrollerG1
+    comptroller: ComptrollerHarness
     priceOracle: SimplePriceOracle
+    comp: Comp
     unitroller: Unitroller
-    interestRateModel: WhitePaperInterestRateModel
+    interestRateModel: InterestRateModelHarness
 }
 
 export const comptrollerFixture: Fixture<ComptrollerFixture> = async function ([wallet, treasuryGuardian, treasuryAddress]: Wallet[]): Promise<ComptrollerFixture> {
     const unitrollerFactory =  await ethers.getContractFactory('Unitroller')
     const unitroller = (await unitrollerFactory.deploy()) as Unitroller
-    const comptrollerFactory = await ethers.getContractFactory('ComptrollerG1');
-    const comptroller = (await comptrollerFactory.deploy()) as ComptrollerG1
+    const comptrollerFactory = await ethers.getContractFactory('ComptrollerHarness');
+    const comptroller = (await comptrollerFactory.deploy()) as ComptrollerHarness
 
     const priceOracleFactory = await ethers.getContractFactory('SimplePriceOracle')
     const priceOracle = (await priceOracleFactory.deploy()) as SimplePriceOracle
 
     const closeFactor = bigNumber17.mul(6)
     const liquidationIncentive = BigNumber.from('1080000000000000000')
-    const interestBaseRate = bigNumber16.mul(5)
-    const interestPerYearRate = bigNumber16.mul(12)
-    const maxAssets = 20
 
     const compFactory = await ethers.getContractFactory('Comp')
     const comp = (await compFactory.deploy(wallet.address)) as Comp
 
+    const compRate = bigNumber18
+
+
     await unitroller._setPendingImplementation(comptroller.address)
-    await comptroller._become(unitroller.address, priceOracle.address, closeFactor, maxAssets, true)
+    await comptroller._become(unitroller.address)
 
     await comptroller._setLiquidationIncentive(liquidationIncentive)
     // console.log('=========_setLiquidationIncentive==========')
@@ -101,12 +57,15 @@ export const comptrollerFixture: Fixture<ComptrollerFixture> = async function ([
     // console.log('=========_setCloseFactor==========')
     await comptroller._setPriceOracle(priceOracle.address)
     // console.log('=========_setPriceOracle==========')
-    await comptroller._setMaxAssets(maxAssets)
-    // console.log('=========setMaxAssets==========')
+    await comptroller.setCompAddress(comp.address)
+    // console.log('=========setCompAddress==========')
+
+    await comptroller.harnessSetCompRate(compRate)
+    // console.log('=========harnessSetVenusRate==========')
 
 
-    const interestRateModelFactory = await ethers.getContractFactory('WhitePaperInterestRateModel')
-    const interestRateModel = (await interestRateModelFactory.deploy(interestBaseRate, interestPerYearRate)) as WhitePaperInterestRateModel
+    const interestRateModelHarnessFactory = await ethers.getContractFactory('InterestRateModelHarness')
+    const interestRateModel = (await interestRateModelHarnessFactory.deploy(BigNumber.from(0))) as InterestRateModelHarness
 
     console.log(`
         comp: ${comp.address},
