@@ -84,10 +84,13 @@ export const comptrollerFixture: Fixture<ComptrollerFixture> = async function ([
     const priceOracle = (await priceOracleFactory.deploy()) as SimplePriceOracle
 
     const closeFactor = bigNumber17.mul(6)
-    const liquidationIncentive = BigNumber.from('1080000000000000000')
+    const liquidationIncentive = bigNumber17.mul(108)
     const interestBaseRate = bigNumber16.mul(5)
     const interestPerYearRate = bigNumber16.mul(12)
     const maxAssets = 20
+
+    const interestRateModelFactory = await ethers.getContractFactory('WhitePaperInterestRateModel')
+    const interestRateModel = (await interestRateModelFactory.deploy(2102400, interestBaseRate, interestPerYearRate)) as WhitePaperInterestRateModel
 
     const compFactory = await ethers.getContractFactory('Comp')
     const comp = (await compFactory.deploy(wallet.address)) as Comp
@@ -103,10 +106,6 @@ export const comptrollerFixture: Fixture<ComptrollerFixture> = async function ([
     // console.log('=========_setPriceOracle==========')
     await comptroller._setMaxAssets(maxAssets)
     // console.log('=========setMaxAssets==========')
-
-
-    const interestRateModelFactory = await ethers.getContractFactory('WhitePaperInterestRateModel')
-    const interestRateModel = (await interestRateModelFactory.deploy(2102400, interestBaseRate, interestPerYearRate)) as WhitePaperInterestRateModel
 
     console.log(`
         comp: ${comp.address},

@@ -30,7 +30,9 @@ async function main() {
       }
       let addr = data[ele].address
       if(data[ele].upgraded) {
+        if(data[ele].hasOwnProperty('upgradedAddress') && data[ele].upgradedAddress) {
           addr = data[ele].upgradedAddress
+        }
       }
       if(!addr){
           continue;
