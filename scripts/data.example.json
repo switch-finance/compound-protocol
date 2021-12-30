@@ -84,6 +84,15 @@
 		"upgraded": false,
 		"verified": false
 	},
+	"cUSDCDelegate": {
+		"contractName": "CErc20Delegate",
+		"address": "",
+		"constructorArgs": [],
+		"upgradedAddress": "",
+		"deployed": false,
+		"upgraded": false,
+		"verified": false
+	},
 	"cUSDT": {
 		"contractName": "CErc20Delegator",
 		"address": "",
@@ -116,7 +125,7 @@
 			"cUSDC",
 			"8",
 			"${devWallet.address}",
-			"${cUSDTDelegate.address}",
+			"${cUSDCDelegate.address}",
 			"0x"
 		],
 		"upgradedAddress": "",

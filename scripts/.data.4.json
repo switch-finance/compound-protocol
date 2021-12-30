@@ -1,127 +1,136 @@
 {
-	"devWallet": {
-		"address": "0x2d4e68cAF597d1e980b5e8684164460161f8C29b",
-		"constructorArgs": [],
-		"upgradedAddress": "",
-		"deployed": true,
-		"upgraded": true,
-		"verified": true
-	},
-    "USDT": {
-		"contractName": "ERC20Harness",
-		"address": "",
-		"constructorArgs": [
-			"1000000000000000000",
-			"USDT Token",
-			"6",
-			"USDT"
-		],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	},
-    "USDC": {
-		"contractName": "ERC20Harness",
-		"address": "",
-		"constructorArgs": [
-			"1000000000000000000",
-			"USDC Token",
-			"6",
-			"USDC"
-		],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	},
-    "Unitroller": {
-		"contractName": "Unitroller",
-		"address": "",
-		"constructorArgs": [],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	},
-    "ComptrollerG1": {
-		"contractName": "ComptrollerG1",
-		"address": "",
-		"constructorArgs": [],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	},
-    "SimplePriceOracle": {
-		"contractName": "SimplePriceOracle",
-		"address": "",
-		"constructorArgs": [],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	},
-    "WhitePaperInterestRateModel": {
-		"contractName": "WhitePaperInterestRateModel",
-		"address": "",
-		"constructorArgs": [
-			"2102400",
-			"50000000000000000",
-			"120000000000000000"
-		],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	},
-	"cUSDTDelegate": {
-		"contractName": "CErc20Delegate",
-		"address": "",
-		"constructorArgs": [],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	},
-	"cUSDT": {
-		"contractName": "CErc20Delegator",
-		"address": "",
-		"constructorArgs": [
-			"${USDT.address}",
-			"${ComptrollerG1.address}",
-			"${WhitePaperInterestRateModel.address}",
-			"216388390375430",
-			"Compound USDT",
-			"cUSDT",
-			"8",
-			"${devWallet.address}",
-			"${cUSDTDelegate.address}",
-			"0x"
-		],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	},
-	"cUSDC": {
-		"contractName": "CErc20Delegator",
-		"address": "",
-		"constructorArgs": [
-			"${USDC.address}",
-			"${ComptrollerG1.address}",
-			"${WhitePaperInterestRateModel.address}",
-			"224288927102189",
-			"Compound USDC",
-			"cUSDC",
-			"8",
-			"${devWallet.address}",
-			"${cUSDTDelegate.address}",
-			"0x"
-		],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	}
+  "devWallet": {
+    "address": "0x2d4e68cAF597d1e980b5e8684164460161f8C29b",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": true
+  },
+  "USDT": {
+    "contractName": "ERC20Harness",
+    "address": "0x357eB57DBF2110819A9574C86BD3e4bcf34261BC",
+    "constructorArgs": [
+      "1000000000000000000",
+      "USDT Token",
+      "6",
+      "USDT"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "USDC": {
+    "contractName": "ERC20Harness",
+    "address": "0x6d5Ad445e956796F31c4562E7Cc011948ECa9055",
+    "constructorArgs": [
+      "1000000000000000000",
+      "USDC Token",
+      "6",
+      "USDC"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "Unitroller": {
+    "contractName": "Unitroller",
+    "address": "0xbF7301b7704469A469015CE9365adB0C8FBcee5c",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "ComptrollerG1": {
+    "contractName": "ComptrollerG1",
+    "address": "0x23e2ae6E662a572700CD3bd49b65A7A00e516d4e",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "SimplePriceOracle": {
+    "contractName": "SimplePriceOracle",
+    "address": "0x2A2bfE75Bd114E8Bad1c6D89EF9a59176ecB4dE9",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "WhitePaperInterestRateModel": {
+    "contractName": "WhitePaperInterestRateModel",
+    "address": "0x9cBe602964329907C2d3602CC84FD8662d62dd7b",
+    "constructorArgs": [
+      "2102400",
+      "50000000000000000",
+      "120000000000000000"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "cUSDTDelegate": {
+    "contractName": "CErc20Delegate",
+    "address": "0x883ed1B4dE3c0a2e59F75B685F51E80B03D11e13",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "cUSDCDelegate": {
+    "contractName": "CErc20Delegate",
+    "address": "0x76937Bb965362077C94A7d8DD89fb634AF6ef41A",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "cUSDT": {
+    "contractName": "CErc20Delegator",
+    "address": "0xDbF6F7b40733F41846C63A3Db9c7464bAD57C926",
+    "constructorArgs": [
+      "${USDT.address}",
+      "${ComptrollerG1.address}",
+      "${WhitePaperInterestRateModel.address}",
+      "216388390375430",
+      "Compound USDT",
+      "cUSDT",
+      "8",
+      "${devWallet.address}",
+      "${cUSDTDelegate.address}",
+      "0x"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "cUSDC": {
+    "contractName": "CErc20Delegator",
+    "address": "0xD9761883BE56EDBEa469862b222148b55971d84E",
+    "constructorArgs": [
+      "${USDC.address}",
+      "${ComptrollerG1.address}",
+      "${WhitePaperInterestRateModel.address}",
+      "224288927102189",
+      "Compound USDC",
+      "cUSDC",
+      "8",
+      "${devWallet.address}",
+      "${cUSDCDelegate.address}",
+      "0x"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  }
 }

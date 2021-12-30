@@ -64,7 +64,7 @@
   },
   "WhitePaperInterestRateModel": {
     "contractName": "WhitePaperInterestRateModel",
-    "address": "0x9B237C9Fa15e715518B4a979969aB50dd4655a2c",
+    "address": "0x6419dbA8E58Aea2Bec34F6d727c61748c3696ccC",
     "constructorArgs": [
       "10512000",
       "50000000000000000",
@@ -78,6 +78,15 @@
   "cUSDTDelegate": {
     "contractName": "CErc20Delegate",
     "address": "0xe09A0EaDF737b5Cf6946ac184d6bF19B376190aB",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "cUSDCDelegate": {
+    "contractName": "CErc20Delegate",
+    "address": "0xfD202FFBE93ABc430753e3963BE77863d21d2804",
     "constructorArgs": [],
     "upgradedAddress": "",
     "deployed": true,
@@ -106,7 +115,7 @@
   },
   "cUSDC": {
     "contractName": "CErc20Delegator",
-    "address": "0x02b25ecb7BC667551Ea0972355033e0D88a3CcA9",
+    "address": "0x53A19c0efA16961f7CDDe81DbA5B31dcDa08cFC7",
     "constructorArgs": [
       "${USDC.address}",
       "${ComptrollerG1.address}",

@@ -1,7 +1,7 @@
 [
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "Unitroller",
         "functionName": "_setPendingImplementation",
         "contractName": "Unitroller",
@@ -12,7 +12,7 @@
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "ComptrollerG1",
         "functionName": "_become",
         "contractName": "ComptrollerG1",
@@ -27,7 +27,7 @@
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "ComptrollerG1",
         "functionName": "_setLiquidationIncentive",
         "contractName": "ComptrollerG1",
@@ -38,7 +38,7 @@
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "ComptrollerG1",
         "functionName": "_setCloseFactor",
         "contractName": "ComptrollerG1",
@@ -49,7 +49,7 @@
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "ComptrollerG1",
         "functionName": "_setPriceOracle",
         "contractName": "ComptrollerG1",
@@ -60,7 +60,7 @@
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "ComptrollerG1",
         "functionName": "_setMaxAssets",
         "contractName": "ComptrollerG1",
@@ -71,7 +71,7 @@
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "ComptrollerG1",
         "functionName": "_supportMarket",
         "contractName": "ComptrollerG1",
@@ -82,7 +82,7 @@
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "ComptrollerG1",
         "functionName": "_supportMarket",
         "contractName": "ComptrollerG1",
@@ -93,24 +93,26 @@
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "ComptrollerG1",
         "functionName": "_setCollateralFactor",
         "contractName": "ComptrollerG1",
         "contractAddr": "",
         "args": [
-            "${cUSDT.address}","60000000000000000"
+            "${cUSDT.address}",
+            "60000000000000000"
         ]
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "ComptrollerG1",
         "functionName": "_setCollateralFactor",
         "contractName": "ComptrollerG1",
         "contractAddr": "",
         "args": [
-            "${cUSDC.address}","60000000000000000"
+            "${cUSDC.address}",
+            "60000000000000000"
         ]
     },
     {
@@ -127,40 +129,44 @@
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "SimplePriceOracle",
         "functionName": "setUnderlyingPrice",
         "contractName": "SimplePriceOracle",
         "contractAddr": "",
         "args": [
-            "${cUSDT.address}","1010000000000000000"
+            "${cUSDT.address}",
+            "1010000000000000000"
         ]
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "SimplePriceOracle",
         "functionName": "setUnderlyingPrice",
         "contractName": "SimplePriceOracle",
         "contractAddr": "",
         "args": [
-            "${cUSDC.address}","1015000000000000000"
+            "${cUSDC.address}",
+            "1015000000000000000"
         ]
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "cUSDT",
         "functionName": "_setImplementation",
         "contractName": "CErc20Delegator",
         "contractAddr": "",
         "args": [
-            "${cUSDTDelegate.address}",false,"0x"
+            "${cUSDTDelegate.address}",
+            false,
+            "0x"
         ]
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "cUSDT",
         "functionName": "_setReserveFactor",
         "contractName": "CErc20Delegator",
@@ -171,18 +177,20 @@
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "cUSDC",
         "functionName": "_setImplementation",
         "contractName": "CErc20Delegator",
         "contractAddr": "",
         "args": [
-            "${cUSDCDelegate.address}",false,"0x"
+            "${cUSDCDelegate.address}",
+            false,
+            "0x"
         ]
     },
     {
         "call": true,
-        "called": false,
+        "called": true,
         "name": "cUSDC",
         "functionName": "_setReserveFactor",
         "contractName": "CErc20Delegator",
