@@ -7,6 +7,7 @@ import { Comp } from '../../typechain/Comp'
 import { ERC20Harness } from '../../typechain/ERC20Harness'
 import { CErc20Delegate } from '../../typechain/CErc20Delegate'
 import { CErc20Delegator } from '../../typechain/CErc20Delegator'
+import { CEther } from '../../typechain/CEther'
 import { WhitePaperInterestRateModel } from '../../typechain/WhitePaperInterestRateModel'
 import { Fixture, deployMockContract, MockContract } from 'ethereum-waffle'
 
@@ -22,6 +23,10 @@ export async function getBlockNumber() {
     return blockNumber;
 }
 
+export async function getBalance(user:string) {
+    await ethers.provider.getBalance(user);
+}
+
 export async function createToken(_initialAmount:BigNumber, _decimalUnits:number, _tokenName:string, _tokenSymbol:string) {
     let testTokenFactory = await ethers.getContractFactory('ERC20Harness')
     let res = (await testTokenFactory.deploy(
@@ -30,6 +35,8 @@ export async function createToken(_initialAmount:BigNumber, _decimalUnits:number
         _decimalUnits,
         _tokenSymbol
         )) as ERC20Harness
+    
+    // console.log(_tokenSymbol+':', res.address)
     return res
 }
 
@@ -60,8 +67,34 @@ export async function createCToken(
         cDelegate.address,
         data
     )) as CErc20Delegator
-    
+    // console.log(symbol+':', cToken.address)
     await cToken._setImplementation(cDelegate.address, false, data);
+    await cToken._setReserveFactor(reserveFactor);
+    return cToken
+}
+
+
+export async function createCEther(
+    comptroller:string,
+    interestRateModel:string,
+    initialExchangeRateMantissa:BigNumber,
+    name:string,
+    symbol:string,
+    decimals:number,
+    admin:string
+) {
+    let delegatorFactory = await ethers.getContractFactory('CEther')
+    let reserveFactor = bigNumber16.mul(25)
+    let cToken = (await delegatorFactory.deploy(
+        comptroller,
+        interestRateModel,
+        initialExchangeRateMantissa,
+        name,
+        symbol,
+        decimals,
+        admin
+    )) as CEther
+    // console.log(symbol+':', cToken.address)
     await cToken._setReserveFactor(reserveFactor);
     return cToken
 }

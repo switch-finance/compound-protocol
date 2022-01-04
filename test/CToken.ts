@@ -9,8 +9,9 @@ import { ERC20Harness } from '../typechain/ERC20Harness'
 import { CErc20 } from '../typechain/CErc20'
 import { CErc20Delegate } from '../typechain/CErc20Delegate'
 import { CErc20Delegator } from '../typechain/CErc20Delegator'
+import { CEther } from '../typechain/CEther'
 import { expect } from './shared/expect'
-import { comptrollerFixture, createToken, createCToken, bigNumber18, bigNumber17, bigNumber16 } from './shared/fixtures'
+import { comptrollerFixture, createToken, createCToken, createCEther, bigNumber18, bigNumber17, bigNumber16 } from './shared/fixtures'
 
 const createFixtureLoader = waffle.createFixtureLoader
 let wallet: Wallet,
@@ -28,6 +29,7 @@ let t1: ERC20Harness
 let t2: ERC20Harness
 let ct1: CErc20Delegator
 let ct2: CErc20Delegator
+let ceth: CEther
 
 
 describe('Comptroller', async () => {
@@ -37,6 +39,7 @@ describe('Comptroller', async () => {
     let exchangeRate2 = bigNumber18.mul(200000000)
     let price1 = bigNumber18.mul(1)
     let price2 = bigNumber18.mul(2)
+    let ethprice = bigNumber18.mul(4000)
     let collateralFactor = bigNumber17.mul(6)
 
     before('create fixture loader', async () => {
@@ -82,12 +85,25 @@ describe('Comptroller', async () => {
             wallet.address
         ))
 
+        ceth = (await createCEther(
+            comptroller.address,
+            interestRateModel.address,
+            exchangeRate2,
+            "Compound ETH-Test",
+            "cETH",
+            18,
+            wallet.address
+        ))
+
         await priceOracle.setUnderlyingPrice(ct1.address, price1)
         await priceOracle.setUnderlyingPrice(ct2.address, price2)
+        await priceOracle.setUnderlyingPrice(ceth.address, ethprice)
         await comptroller._supportMarket(ct1.address)
         await comptroller._supportMarket(ct2.address)
+        await comptroller._supportMarket(ceth.address)
         await comptroller._setCollateralFactor(ct1.address, collateralFactor)
         await comptroller._setCollateralFactor(ct2.address, collateralFactor)
+        await comptroller._setCollateralFactor(ceth.address, collateralFactor)
     })
 
     describe('#base', async () => {
@@ -128,7 +144,30 @@ describe('Comptroller', async () => {
 
     })
 
-    describe('#mint and redeem', async () => {
+    describe('#mint and redeem for cether', async () => {
+
+        it('success', async () => {
+            let balance1 = await ethers.provider.getBalance(user1.address)
+            let cbalance1 = await ceth.balanceOf(user1.address)
+            let rate = await ceth.exchangeRateStored()
+            // console.log('exchage rate:', rate.toString())
+            // console.log('balance1, cbalance1:', balance1.toString(), cbalance1.toString())
+            await ceth.connect(user1).mint({value:bigNumber18.mul(2)})
+            let balance2 = await ethers.provider.getBalance(user1.address)
+            let cbalance2 = await ceth.balanceOf(user1.address)
+            // console.log('balance2, cbalance2:', balance2.toString(), cbalance2.toString())
+            expect(cbalance2).to.eq(bigNumber18.mul(2).mul(bigNumber18).div(rate))
+            expect(balance1).to.gt(bigNumber18.mul(2).add(balance2))
+
+            await ceth.connect(user1).redeem(cbalance2)
+            let balance3 = await t1.balanceOf(user1.address)
+            let cbalance3 = await ceth.balanceOf(user1.address)
+            // console.log('balance3, cbalance3:', balance3.toString(), cbalance3.toString())
+            expect(cbalance3).to.eq(bigNumber18.mul(0))
+        })
+    })
+
+    describe('#mint and redeem for ctoken', async () => {
         beforeEach('each', async () => {
             await t1.transfer(user1.address, bigNumber18.mul(1000))
             await t1.approve(ct1.address, bigNumber18.mul(100000000))
