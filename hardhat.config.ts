@@ -47,8 +47,8 @@ const config: HardhatUserConfig = {
       chainId: 97,
       allowUnlimitedContractSize: true
     },
-    ropsten: {
-      url: `https://ropsten.infura.io/v3/${data.InfuraApiKey}`,
+    kovan: {
+      url: `https://kovan.infura.io/v3/${data.InfuraApiKey}`,
       accounts: [data.PrivateKey]
     },
     rinkeby: {

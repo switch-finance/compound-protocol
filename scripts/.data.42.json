@@ -9,7 +9,7 @@
   },
   "USDT": {
     "contractName": "ERC20Harness",
-    "address": "0x357eB57DBF2110819A9574C86BD3e4bcf34261BC",
+    "address": "0x89f2887b991F40C44C42E2acF5564DE4a8EDAaCA",
     "constructorArgs": [
       "1000000000000000000",
       "USDT Token",
@@ -23,7 +23,7 @@
   },
   "USDC": {
     "contractName": "ERC20Harness",
-    "address": "0x6d5Ad445e956796F31c4562E7Cc011948ECa9055",
+    "address": "0x7e67C1a649Bf5BEC58F433f3dB2c0E2B350e354A",
     "constructorArgs": [
       "1000000000000000000",
       "USDC Token",
@@ -37,7 +37,7 @@
   },
   "Unitroller": {
     "contractName": "Unitroller",
-    "address": "0xbF7301b7704469A469015CE9365adB0C8FBcee5c",
+    "address": "0x36746986db3bBB4460184396df4c88F3267b8dc1",
     "constructorArgs": [],
     "upgradedAddress": "",
     "deployed": true,
@@ -46,7 +46,7 @@
   },
   "ComptrollerG1": {
     "contractName": "ComptrollerG1",
-    "address": "0x23e2ae6E662a572700CD3bd49b65A7A00e516d4e",
+    "address": "0x5c917873A397973963E4c43f4FDDe142C8cCab2A",
     "constructorArgs": [],
     "upgradedAddress": "",
     "deployed": true,
@@ -55,7 +55,7 @@
   },
   "SimplePriceOracle": {
     "contractName": "SimplePriceOracle",
-    "address": "0x2A2bfE75Bd114E8Bad1c6D89EF9a59176ecB4dE9",
+    "address": "0x634AD2323B6ada19a6F23E82D7ECdeE8e7D7338B",
     "constructorArgs": [],
     "upgradedAddress": "",
     "deployed": true,
@@ -64,7 +64,7 @@
   },
   "WhitePaperInterestRateModel": {
     "contractName": "WhitePaperInterestRateModel",
-    "address": "0x9cBe602964329907C2d3602CC84FD8662d62dd7b",
+    "address": "0x8E500795e74B5D9Ed5C674dB26fedd10bAadF6C8",
     "constructorArgs": [
       "2102400",
       "50000000000000000",
@@ -77,7 +77,7 @@
   },
   "cUSDTDelegate": {
     "contractName": "CErc20Delegate",
-    "address": "0x883ed1B4dE3c0a2e59F75B685F51E80B03D11e13",
+    "address": "0xc10d52939d4be7D3Dfe31FdaAEe93D9ca88f863b",
     "constructorArgs": [],
     "upgradedAddress": "",
     "deployed": true,
@@ -86,7 +86,7 @@
   },
   "cUSDCDelegate": {
     "contractName": "CErc20Delegate",
-    "address": "0x76937Bb965362077C94A7d8DD89fb634AF6ef41A",
+    "address": "0x00A377631D488a5d9Cc9a374C9A85ccf6b9CdF8A",
     "constructorArgs": [],
     "upgradedAddress": "",
     "deployed": true,
@@ -95,13 +95,13 @@
   },
   "cUSDT": {
     "contractName": "CErc20Delegator",
-    "address": "0xDbF6F7b40733F41846C63A3Db9c7464bAD57C926",
+    "address": "0x0270B8FCD3ceB1E44Dd08C365Ad77A22877ac4FC",
     "constructorArgs": [
       "${USDT.address}",
       "${ComptrollerG1.address}",
       "${WhitePaperInterestRateModel.address}",
-      "216388390375430",
-      "Compound USDT",
+      "214808935246542489124881361",
+      "Compound USDT Token",
       "cUSDT",
       "8",
       "${devWallet.address}",
@@ -115,13 +115,13 @@
   },
   "cUSDC": {
     "contractName": "CErc20Delegator",
-    "address": "0xD9761883BE56EDBEa469862b222148b55971d84E",
+    "address": "0xFF0A47C2Ef2515D7CAfc3839542A27d8Cb15a385",
     "constructorArgs": [
       "${USDC.address}",
       "${ComptrollerG1.address}",
       "${WhitePaperInterestRateModel.address}",
-      "224288927102189",
-      "Compound USDC",
+      "212401102719818641648155779",
+      "Compound USDC Token",
       "cUSDC",
       "8",
       "${devWallet.address}",
@@ -135,7 +135,7 @@
   },
   "cETH": {
     "contractName": "CEther",
-    "address": "0xC73B34d6Fd72C5Af53258eA626371529238Bef4e",
+    "address": "0xA24166a8dbcC52b9C132585A27f2B53AcE1C5ad2",
     "constructorArgs": [
       "${ComptrollerG1.address}",
       "${WhitePaperInterestRateModel.address}",

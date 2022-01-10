@@ -154,6 +154,18 @@
     {
         "call": true,
         "called": true,
+        "name": "SimplePriceOracle",
+        "functionName": "setUnderlyingPrice",
+        "contractName": "SimplePriceOracle",
+        "contractAddr": "",
+        "args": [
+            "${cETH.address}",
+            "500015000000000000000"
+        ]
+    },
+    {
+        "call": true,
+        "called": true,
         "name": "cUSDT",
         "functionName": "_setImplementation",
         "contractName": "CErc20Delegator",
@@ -194,6 +206,17 @@
         "name": "cUSDC",
         "functionName": "_setReserveFactor",
         "contractName": "CErc20Delegator",
+        "contractAddr": "",
+        "args": [
+            "250000000000000000"
+        ]
+    },
+    {
+        "call": true,
+        "called": true,
+        "name": "cETH",
+        "functionName": "_setReserveFactor",
+        "contractName": "CEther",
         "contractAddr": "",
         "args": [
             "250000000000000000"

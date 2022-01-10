@@ -132,5 +132,22 @@
 		"deployed": false,
 		"upgraded": false,
 		"verified": false
+	},
+	"cETH": {
+		"contractName": "CEther",
+		"address": "",
+		"constructorArgs": [
+			"${ComptrollerG1.address}",
+			"${WhitePaperInterestRateModel.address}",
+			"200581000767058027241986836",
+			"Compound Ether",
+			"cETH",
+			"8",
+			"${devWallet.address}"
+		],
+		"upgradedAddress": "",
+		"deployed": false,
+		"upgraded": false,
+		"verified": false
 	}
 }
