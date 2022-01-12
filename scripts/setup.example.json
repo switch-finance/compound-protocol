@@ -256,5 +256,17 @@
         "args": [
             "${ComptrollerHarness.address}"
         ]
+    },
+    {
+        "call": true,
+        "called": false,
+        "name": "Comp",
+        "functionName": "transfer",
+        "contractName": "Comp",
+        "contractAddr": "",
+        "args": [
+            "${ComptrollerHarness.address}",
+            "1000000000000000000000000"
+        ]
     }
 ]
