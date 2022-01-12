@@ -35,6 +35,17 @@
     "upgraded": true,
     "verified": false
   },
+  "Comp": {
+		"contractName": "Comp",
+		"address": "",
+		"constructorArgs": [
+			"${devWallet.address}"
+		],
+		"upgradedAddress": "",
+		"deployed": false,
+		"upgraded": false,
+		"verified": false
+	},
   "Unitroller": {
     "contractName": "Unitroller",
     "address": "0x36746986db3bBB4460184396df4c88F3267b8dc1",
@@ -53,6 +64,15 @@
     "upgraded": true,
     "verified": false
   },
+  "ComptrollerHarness": {
+		"contractName": "ComptrollerHarness",
+		"address": "",
+		"constructorArgs": [],
+		"upgradedAddress": "",
+		"deployed": false,
+		"upgraded": false,
+		"verified": false
+	},
   "SimplePriceOracle": {
     "contractName": "SimplePriceOracle",
     "address": "0x634AD2323B6ada19a6F23E82D7ECdeE8e7D7338B",

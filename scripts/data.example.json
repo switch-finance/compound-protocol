@@ -35,6 +35,17 @@
 		"upgraded": false,
 		"verified": false
 	},
+	"Comp": {
+		"contractName": "Comp",
+		"address": "",
+		"constructorArgs": [
+			"${devWallet.address}"
+		],
+		"upgradedAddress": "",
+		"deployed": false,
+		"upgraded": false,
+		"verified": false
+	},
     "Unitroller": {
 		"contractName": "Unitroller",
 		"address": "",
@@ -44,8 +55,8 @@
 		"upgraded": false,
 		"verified": false
 	},
-    "ComptrollerG1": {
-		"contractName": "ComptrollerG1",
+    "ComptrollerHarness": {
+		"contractName": "ComptrollerHarness",
 		"address": "",
 		"constructorArgs": [],
 		"upgradedAddress": "",
@@ -98,7 +109,7 @@
 		"address": "",
 		"constructorArgs": [
 			"${USDT.address}",
-			"${ComptrollerG1.address}",
+			"${ComptrollerHarness.address}",
 			"${WhitePaperInterestRateModel.address}",
 			"214808935246542489124881361",
 			"Compound USDT Token",
@@ -118,7 +129,7 @@
 		"address": "",
 		"constructorArgs": [
 			"${USDC.address}",
-			"${ComptrollerG1.address}",
+			"${ComptrollerHarness.address}",
 			"${WhitePaperInterestRateModel.address}",
 			"212401102719818641648155779",
 			"Compound USDC Token",
@@ -137,7 +148,7 @@
 		"contractName": "CEther",
 		"address": "",
 		"constructorArgs": [
-			"${ComptrollerG1.address}",
+			"${ComptrollerHarness.address}",
 			"${WhitePaperInterestRateModel.address}",
 			"200581000767058027241986836",
 			"Compound Ether",
