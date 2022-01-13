@@ -36,16 +36,16 @@
     "verified": false
   },
   "Comp": {
-		"contractName": "Comp",
-		"address": "",
-		"constructorArgs": [
-			"${devWallet.address}"
-		],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	},
+    "contractName": "Comp",
+    "address": "0x37183B051Ef5f32aDB7064292ca84952a7f16Fb4",
+    "constructorArgs": [
+      "${devWallet.address}"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
   "Unitroller": {
     "contractName": "Unitroller",
     "address": "0x86Ba028B78Ba18A4Fcb623b0c51F9628D3Ae5e29",
@@ -64,15 +64,15 @@
     "upgraded": true,
     "verified": false
   },
-  "ComptrollerHarness": {
-		"contractName": "ComptrollerHarness",
-		"address": "",
-		"constructorArgs": [],
-		"upgradedAddress": "",
-		"deployed": false,
-		"upgraded": false,
-		"verified": false
-	},
+  "ComptrollerTest": {
+    "contractName": "ComptrollerTest",
+    "address": "0x2deF8479cac4c49D68f0f056f11abDBe2C322408",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
   "SimplePriceOracle": {
     "contractName": "SimplePriceOracle",
     "address": "0xD7aC3D215C11f77F615dfAF5250d54cFb7F1a3D1",

@@ -55,8 +55,8 @@
 		"upgraded": false,
 		"verified": false
 	},
-    "ComptrollerHarness": {
-		"contractName": "ComptrollerHarness",
+    "ComptrollerTest": {
+		"contractName": "ComptrollerTest",
 		"address": "",
 		"constructorArgs": [],
 		"upgradedAddress": "",

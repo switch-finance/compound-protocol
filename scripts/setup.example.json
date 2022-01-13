@@ -7,30 +7,26 @@
         "contractName": "Unitroller",
         "contractAddr": "",
         "args": [
-            "${ComptrollerHarness.address}"
+            "${ComptrollerTest.address}"
         ]
     },
     {
         "call": true,
         "called": false,
-        "name": "ComptrollerHarness",
+        "name": "ComptrollerTest",
         "functionName": "_become",
-        "contractName": "ComptrollerHarness",
+        "contractName": "ComptrollerTest",
         "contractAddr": "",
         "args": [
-            "${Unitroller.address}",
-            "${SimplePriceOracle.address}",
-            "10000000000000000",
-            "20",
-            true
+            "${Unitroller.address}"
         ]
     },
     {
         "call": true,
         "called": false,
-        "name": "ComptrollerHarness",
+        "name": "ComptrollerTest",
         "functionName": "_setLiquidationIncentive",
-        "contractName": "ComptrollerHarness",
+        "contractName": "ComptrollerTest",
         "contractAddr": "",
         "args": [
             "1080000000000000000"
@@ -39,9 +35,9 @@
     {
         "call": true,
         "called": false,
-        "name": "ComptrollerHarness",
+        "name": "ComptrollerTest",
         "functionName": "_setCloseFactor",
-        "contractName": "ComptrollerHarness",
+        "contractName": "ComptrollerTest",
         "contractAddr": "",
         "args": [
             "10000000000000000"
@@ -50,9 +46,9 @@
     {
         "call": true,
         "called": false,
-        "name": "ComptrollerHarness",
+        "name": "ComptrollerTest",
         "functionName": "_setPriceOracle",
-        "contractName": "ComptrollerHarness",
+        "contractName": "ComptrollerTest",
         "contractAddr": "",
         "args": [
             "${SimplePriceOracle.address}"
@@ -61,9 +57,9 @@
     {
         "call": true,
         "called": false,
-        "name": "ComptrollerHarness",
+        "name": "ComptrollerTest",
         "functionName": "_setMaxAssets",
-        "contractName": "ComptrollerHarness",
+        "contractName": "ComptrollerTest",
         "contractAddr": "",
         "args": [
             "20"
@@ -72,9 +68,9 @@
     {
         "call": true,
         "called": false,
-        "name": "ComptrollerHarness",
+        "name": "ComptrollerTest",
         "functionName": "_supportMarket",
-        "contractName": "ComptrollerHarness",
+        "contractName": "ComptrollerTest",
         "contractAddr": "",
         "args": [
             "${cUSDT.address}"
@@ -83,9 +79,9 @@
     {
         "call": true,
         "called": false,
-        "name": "ComptrollerHarness",
+        "name": "ComptrollerTest",
         "functionName": "_supportMarket",
-        "contractName": "ComptrollerHarness",
+        "contractName": "ComptrollerTest",
         "contractAddr": "",
         "args": [
             "${cUSDC.address}"
@@ -94,9 +90,9 @@
     {
         "call": true,
         "called": false,
-        "name": "ComptrollerHarness",
+        "name": "ComptrollerTest",
         "functionName": "_setCollateralFactor",
-        "contractName": "ComptrollerHarness",
+        "contractName": "ComptrollerTest",
         "contractAddr": "",
         "args": [
             "${cUSDT.address}","60000000000000000"
@@ -105,9 +101,9 @@
     {
         "call": true,
         "called": false,
-        "name": "ComptrollerHarness",
+        "name": "ComptrollerTest",
         "functionName": "_setCollateralFactor",
-        "contractName": "ComptrollerHarness",
+        "contractName": "ComptrollerTest",
         "contractAddr": "",
         "args": [
             "${cUSDC.address}","60000000000000000"
@@ -116,9 +112,9 @@
     {
         "call": true,
         "called": false,
-        "name": "ComptrollerHarness",
+        "name": "ComptrollerTest",
         "functionName": "setCompAddress",
-        "contractName": "ComptrollerHarness",
+        "contractName": "ComptrollerTest",
         "contractAddr": "",
         "args": [
             "${Comp.address}"
@@ -232,7 +228,7 @@
         "contractName": "CErc20Delegator",
         "contractAddr": "",
         "args": [
-            "${ComptrollerHarness.address}"
+            "${ComptrollerTest.address}"
         ]
     },
     {
@@ -243,7 +239,7 @@
         "contractName": "CErc20Delegator",
         "contractAddr": "",
         "args": [
-            "${ComptrollerHarness.address}"
+            "${ComptrollerTest.address}"
         ]
     },
     {
@@ -254,7 +250,7 @@
         "contractName": "CEther",
         "contractAddr": "",
         "args": [
-            "${ComptrollerHarness.address}"
+            "${ComptrollerTest.address}"
         ]
     },
     {
@@ -265,7 +261,7 @@
         "contractName": "Comp",
         "contractAddr": "",
         "args": [
-            "${ComptrollerHarness.address}",
+            "${ComptrollerTest.address}",
             "1000000000000000000000000"
         ]
     }
