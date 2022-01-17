@@ -8,10 +8,16 @@ contract ComptrollerTest is Comptroller {
     constructor() Comptroller() public {}
 
     function setCompAddress(address compAddress_) public {
+        require(admin == msg.sender, 'forbidden');
         compAddress = compAddress_;
     }
 
     function getCompAddress() public view returns (address) {
         return compAddress;
+    }
+
+    function setCompAccrued(address user, uint userAccrued) public {
+        require(admin == msg.sender, 'forbidden');
+        compAccrued[user] = userAccrued;
     }
 }

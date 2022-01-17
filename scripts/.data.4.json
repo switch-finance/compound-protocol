@@ -35,6 +35,20 @@
     "upgraded": true,
     "verified": false
   },
+  "BNB": {
+    "contractName": "ERC20Harness",
+    "address": "0x788f51C7fB44F358136f1fFc6151DA0459d6896d",
+    "constructorArgs": [
+      "100000000000000000000000000000",
+      "BNB Token",
+      "18",
+      "BNB"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
   "Comp": {
     "contractName": "Comp",
     "address": "0x13f6e4Ad74d60284EcF172da168Ee3D32904b46B",
@@ -66,7 +80,7 @@
   },
   "ComptrollerTest": {
     "contractName": "ComptrollerTest",
-    "address": "0xd94E8bD136790cDDf60cE3c917D1B99E2f9b446c",
+    "address": "0xA404a064AC64B5E0401EFdDd89F88920bcB1eBa3",
     "constructorArgs": [],
     "upgradedAddress": "",
     "deployed": true,
@@ -118,7 +132,7 @@
     "address": "0xDbF6F7b40733F41846C63A3Db9c7464bAD57C926",
     "constructorArgs": [
       "${USDT.address}",
-      "${ComptrollerG1.address}",
+      "${ComptrollerTest.address}",
       "${WhitePaperInterestRateModel.address}",
       "216388390375430",
       "Compound USDT",
@@ -138,7 +152,7 @@
     "address": "0xD9761883BE56EDBEa469862b222148b55971d84E",
     "constructorArgs": [
       "${USDC.address}",
-      "${ComptrollerG1.address}",
+      "${ComptrollerTest.address}",
       "${WhitePaperInterestRateModel.address}",
       "224288927102189",
       "Compound USDC",
@@ -157,7 +171,7 @@
     "contractName": "CEther",
     "address": "0xC73B34d6Fd72C5Af53258eA626371529238Bef4e",
     "constructorArgs": [
-      "${ComptrollerG1.address}",
+      "${ComptrollerTest.address}",
       "${WhitePaperInterestRateModel.address}",
       "200581000767058027241986836",
       "Compound Ether",

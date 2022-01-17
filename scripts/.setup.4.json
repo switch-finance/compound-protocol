@@ -167,7 +167,7 @@
         "contractAddr": "",
         "args": [
             "${cETH.address}",
-            "4000015000000000000000"
+            "3000015000000000000000"
         ]
     },
     {
@@ -238,18 +238,30 @@
         "contractAddr": "",
         "args": [
             "0xa027d231d6852F8986409DccC58908D83a48169F",
-            "10000000000000000000000"
+            "100000000000"
         ]
     },
     {
         "call": true,
         "called": true,
-        "name": "USDT",
+        "name": "USDC",
         "functionName": "harnessSetBalance",
         "contractName": "ERC20Harness",
         "contractAddr": "",
         "args": [
-            "0x2E3aF7aD1b68F13A2EFA9d43EC931a58D3215FC4",
+            "0xa027d231d6852F8986409DccC58908D83a48169F",
+            "100000000000"
+        ]
+    },
+    {
+        "call": true,
+        "called": true,
+        "name": "BNB",
+        "functionName": "harnessSetBalance",
+        "contractName": "ERC20Harness",
+        "contractAddr": "",
+        "args": [
+            "0xa027d231d6852F8986409DccC58908D83a48169F",
             "10000000000000000000000"
         ]
     },
@@ -296,6 +308,18 @@
         "args": [
             "${ComptrollerTest.address}",
             "1000000000000000000000000"
+        ]
+    },
+    {
+        "call": true,
+        "called": true,
+        "name": "ComptrollerTest",
+        "functionName": "setCompAccrued",
+        "contractName": "ComptrollerTest",
+        "contractAddr": "",
+        "args": [
+            "0x89f2887b991F40C44C42E2acF5564DE4a8EDAaCA",
+            "1000000000000000000000"
         ]
     }
 ]
