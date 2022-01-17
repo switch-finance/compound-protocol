@@ -129,7 +129,7 @@
   },
   "cETHDelegate": {
     "contractName": "CErc20Delegate",
-    "address": "0xC2937b47B886CA2693b66B0f5ceF9b642109f4f1",
+    "address": "0x3c74107eCF56020CDfa5629ff9FA0a2C21122cCE",
     "constructorArgs": [],
     "upgradedAddress": "",
     "deployed": true,
@@ -178,9 +178,9 @@
   },
   "cETH": {
     "contractName": "CErc20Delegator",
-    "address": "0x890302B120d25f0fcd81fDB3df340EB84Ac84835",
+    "address": "0x4764a9FcA1e69c9A34D359B6c364F304Cc02f7e0",
     "constructorArgs": [
-      "${USDC.address}",
+      "${ETH.address}",
       "${ComptrollerTest.address}",
       "${WhitePaperInterestRateModel.address}",
       "201984430244057718195564787",
