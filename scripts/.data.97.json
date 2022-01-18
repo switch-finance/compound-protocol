@@ -35,6 +35,20 @@
     "upgraded": true,
     "verified": false
   },
+  "Dai": {
+    "contractName": "ERC20Harness",
+    "address": "0xc21dB4D17097D72c20e9f848e4781C7dCfe76132",
+    "constructorArgs": [
+      "100000000000000000000000000000",
+      "Dai Token",
+      "18",
+      "Dai"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
   "ETH": {
     "contractName": "ERC20Harness",
     "address": "0x60E7167a3d8681aaA8FdD325b9901AD307647d7f",
@@ -43,6 +57,20 @@
       "ETH Token",
       "18",
       "ETH"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "Cake": {
+    "contractName": "ERC20Harness",
+    "address": "0x5A36397e8A5D1eBEC1095317b3212493beF5898A",
+    "constructorArgs": [
+      "100000000000000000000000000000",
+      "ETH Token",
+      "18",
+      "Cake"
     ],
     "upgradedAddress": "",
     "deployed": true,
@@ -127,6 +155,15 @@
     "upgraded": true,
     "verified": false
   },
+  "cDaiDelegate": {
+    "contractName": "CErc20Delegate",
+    "address": "0xcc8d71cEfe6d9a4e8b895ce10db48b989b043A67",
+    "constructorArgs": [],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
   "cETHDelegate": {
     "contractName": "CErc20Delegate",
     "address": "0x3c74107eCF56020CDfa5629ff9FA0a2C21122cCE",
@@ -168,7 +205,27 @@
       "vUSDC",
       "8",
       "${devWallet.address}",
-      "${cUSDTDelegate.address}",
+      "${cUSDCDelegate.address}",
+      "0x"
+    ],
+    "upgradedAddress": "",
+    "deployed": true,
+    "upgraded": true,
+    "verified": false
+  },
+  "cDai": {
+    "contractName": "CErc20Delegator",
+    "address": "0xb142688e120461131abADCA1e2B971f4aC575EA2",
+    "constructorArgs": [
+      "${Dai.address}",
+      "${ComptrollerTest.address}",
+      "${WhitePaperInterestRateModel.address}",
+      "209912469741186509114162486",
+      "Venus Dai",
+      "vDai",
+      "8",
+      "${devWallet.address}",
+      "${cDaiDelegate.address}",
       "0x"
     ],
     "upgradedAddress": "",

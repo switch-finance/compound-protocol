@@ -24,7 +24,7 @@ export async function getBlockNumber() {
 }
 
 export async function getBalance(user:string) {
-    await ethers.provider.getBalance(user);
+    return await ethers.provider.getBalance(user);
 }
 
 export async function createToken(_initialAmount:BigNumber, _decimalUnits:number, _tokenName:string, _tokenSymbol:string) {

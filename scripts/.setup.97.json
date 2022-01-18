@@ -91,6 +91,40 @@
         "call": true,
         "called": true,
         "name": "ComptrollerTest",
+        "functionName": "_supportMarket",
+        "contractName": "ComptrollerTest",
+        "contractAddr": "",
+        "args": [
+            "${cETH.address}"
+        ]
+    },
+    {
+        "call": true,
+        "called": true,
+        "name": "ComptrollerTest",
+        "functionName": "_supportMarket",
+        "contractName": "ComptrollerTest",
+        "contractAddr": "",
+        "args": [
+            "${vBNB.address}"
+        ]
+    },
+    {
+        "call": true,
+        "called": true,
+        "name": "ComptrollerTest",
+        "functionName": "_setCollateralFactor",
+        "contractName": "ComptrollerTest",
+        "contractAddr": "",
+        "args": [
+            "${vBNB.address}",
+            "60000000000000000"
+        ]
+    },
+    {
+        "call": true,
+        "called": true,
+        "name": "ComptrollerTest",
         "functionName": "_setCollateralFactor",
         "contractName": "ComptrollerTest",
         "contractAddr": "",
