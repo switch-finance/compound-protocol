@@ -5,6 +5,7 @@
   "main": "index.js",
 
   "scripts": {
+    "wflatten": "waffle flatten",
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
     "deploy:rinkeby": "node hardhat.switch.js rinkeby && npx hardhat run --network rinkeby scripts/deploy.ts",
