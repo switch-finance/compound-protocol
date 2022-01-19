@@ -1,8 +1,9 @@
 import { Wallet, BigNumber } from 'ethers'
 import { ethers, network, waffle } from 'hardhat'
 import { Unitroller } from '../typechain/Unitroller'
-import { ComptrollerG1 } from '../typechain/ComptrollerG1'
+import { ComptrollerHarness } from '../typechain/ComptrollerHarness'
 import { SimplePriceOracle } from '../typechain/SimplePriceOracle'
+import { EscrowCompound } from '../typechain/EscrowCompound'
 import { WhitePaperInterestRateModel } from '../typechain/WhitePaperInterestRateModel'
 import { Comp } from '../typechain/Comp'
 import { ERC20Harness } from '../typechain/ERC20Harness'
@@ -11,16 +12,16 @@ import { CErc20Delegate } from '../typechain/CErc20Delegate'
 import { CErc20Delegator } from '../typechain/CErc20Delegator'
 import { CEther } from '../typechain/CEther'
 import { expect } from './shared/expect'
-import { comptrollerFixture, createToken, createCToken, createCEther, bigNumber18, bigNumber17, bigNumber16 } from './shared/fixtures'
+import { comptrollerFixture, exchangeRate1, exchangeRate2, bigNumber18, bigNumber17 } from './shared/fixtures'
 
 const createFixtureLoader = waffle.createFixtureLoader
 let wallet: Wallet,
-user1: Wallet,
-user2: Wallet,
-user3: Wallet,
-user4: Wallet;
+    user1: Wallet,
+    user2: Wallet,
+    user3: Wallet,
+    user4: Wallet;
 
-let comptroller: ComptrollerG1
+let comptroller: ComptrollerHarness
 let priceOracle: SimplePriceOracle
 let comp: Comp
 let unitroller: Unitroller
@@ -30,13 +31,11 @@ let t2: ERC20Harness
 let ct1: CErc20Delegator
 let ct2: CErc20Delegator
 let ceth: CEther
-
+let escrowCompound: EscrowCompound
 
 describe('Comptroller', async () => {
     let loadFixTure: ReturnType<typeof createFixtureLoader>;
 
-    let exchangeRate1 = bigNumber18.mul(100000000)
-    let exchangeRate2 = bigNumber18.mul(200000000)
     let price1 = bigNumber18.mul(1)
     let price2 = bigNumber18.mul(2)
     let ethprice = bigNumber18.mul(4000)
@@ -45,56 +44,10 @@ describe('Comptroller', async () => {
     before('create fixture loader', async () => {
         [wallet, user1, user2, user3, user4] = await (ethers as any).getSigners()
         loadFixTure = createFixtureLoader([wallet])
-        ; ({ comp, comptroller, priceOracle, unitroller, interestRateModel } = await loadFixTure(comptrollerFixture));
-
-        t1 = (await createToken(
-            bigNumber18.mul(100000000),
-            18,
-            "T1-Test",
-            "T1"
-        ))
-
-        t2 = (await createToken(
-            bigNumber18.mul(100000000),
-            18,
-            "T2-Test",
-            "T2"
-        ))
     })
 
     beforeEach('deploy Comptroller', async () => {
-        ct1 = (await createCToken(
-            t1.address,
-            comptroller.address,
-            interestRateModel.address,
-            exchangeRate1,
-            "Compound T1-Test",
-            "cT1",
-            18,
-            wallet.address
-        ))
-
-        ct2 = (await createCToken(
-            t2.address,
-            comptroller.address,
-            interestRateModel.address,
-            exchangeRate2,
-            "Compound T2-Test",
-            "cT2",
-            18,
-            wallet.address
-        ))
-
-        ceth = (await createCEther(
-            comptroller.address,
-            interestRateModel.address,
-            exchangeRate2,
-            "Compound ETH-Test",
-            "cETH",
-            18,
-            wallet.address
-        ))
-
+        ; ({ t1, t2, ct1, ct2, ceth, comp, comptroller, priceOracle, unitroller, interestRateModel, escrowCompound } = await loadFixTure(comptrollerFixture));
         await priceOracle.setUnderlyingPrice(ct1.address, price1)
         await priceOracle.setUnderlyingPrice(ct2.address, price2)
         await priceOracle.setUnderlyingPrice(ceth.address, ethprice)
@@ -145,14 +98,13 @@ describe('Comptroller', async () => {
     })
 
     describe('#mint and redeem for cether', async () => {
-
         it('success', async () => {
             let balance1 = await ethers.provider.getBalance(user1.address)
             let cbalance1 = await ceth.balanceOf(user1.address)
             let rate = await ceth.exchangeRateStored()
             // console.log('exchage rate:', rate.toString())
             // console.log('balance1, cbalance1:', balance1.toString(), cbalance1.toString())
-            await ceth.connect(user1).mint({value:bigNumber18.mul(2)})
+            await ceth.connect(user1).mint({ value: bigNumber18.mul(2) })
             let balance2 = await ethers.provider.getBalance(user1.address)
             let cbalance2 = await ceth.balanceOf(user1.address)
             // console.log('balance2, cbalance2:', balance2.toString(), cbalance2.toString())
@@ -164,6 +116,10 @@ describe('Comptroller', async () => {
             let cbalance3 = await ceth.balanceOf(user1.address)
             // console.log('balance3, cbalance3:', balance3.toString(), cbalance3.toString())
             expect(cbalance3).to.eq(bigNumber18.mul(0))
+        })
+
+        it('success for escrowCoupound', async () => {
+            await expect(escrowCompound.connect(user1).fromUnderlying(ceth.address, {value: bigNumber18})).to.not.reverted
         })
     })
 
@@ -219,8 +175,8 @@ describe('Comptroller', async () => {
             expect(balance).to.eq(bigNumber18.mul(100).mul(bigNumber18).div(rate2))
             // console.log('ct2 balance:', balance.toString())
 
-            await comptroller.connect(user1).enterMarkets([ct1.address,ct2.address])
-            await comptroller.connect(user2).enterMarkets([ct1.address,ct2.address])
+            await comptroller.connect(user1).enterMarkets([ct1.address, ct2.address])
+            await comptroller.connect(user2).enterMarkets([ct1.address, ct2.address])
 
         })
 
@@ -234,8 +190,8 @@ describe('Comptroller', async () => {
 
             let tx = await ct1.connect(user2).borrow(bigNumber18.mul(10))
             let receipt = await tx.wait()
-            for(let e of receipt.events) {
-                if(e.event == 'Failure') {
+            for (let e of receipt.events) {
+                if (e.event == 'Failure') {
                     console.log(e)
                     expect(e.event).to.equal('Borrow');
                     break;
@@ -243,7 +199,7 @@ describe('Comptroller', async () => {
             }
             // let rate2 = await ct1.exchangeRateStored()
             // console.log('rate2:', rate2.toString())
-            
+
             let pbalance2 = await t1.balanceOf(ct1.address)
             let balance2 = await t1.balanceOf(user1.address)
             let cbalance2 = await ct1.balanceOf(user1.address)
@@ -255,8 +211,8 @@ describe('Comptroller', async () => {
             // repay
             tx = await ct1.connect(user2).repayBorrow(bigNumber18.mul(10))
             receipt = await tx.wait()
-            for(let e of receipt.events) {
-                if(e.event == 'Failure') {
+            for (let e of receipt.events) {
+                if (e.event == 'Failure') {
                     console.log(e)
                     expect(e.event).to.equal('RepayBorrow');
                     break;
