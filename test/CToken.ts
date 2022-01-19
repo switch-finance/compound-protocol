@@ -117,10 +117,6 @@ describe('Comptroller', async () => {
             // console.log('balance3, cbalance3:', balance3.toString(), cbalance3.toString())
             expect(cbalance3).to.eq(bigNumber18.mul(0))
         })
-
-        it('success for escrowCoupound', async () => {
-            await expect(escrowCompound.connect(user1).fromUnderlying(ceth.address, {value: bigNumber18})).to.not.reverted
-        })
     })
 
     describe('#mint and redeem for ctoken', async () => {
@@ -229,5 +225,13 @@ describe('Comptroller', async () => {
 
         })
 
+    })
+
+    describe('#escrowCoupound', async () => {
+        it('success for escrowCoupound', async () => {
+            await escrowCompound.connect(user1).fromUnderlying(ceth.address, {value: bigNumber18})
+            let cethBalance = await ceth.balanceOf(escrowCompound.address)
+            expect(cethBalance).to.gt(BigNumber.from(0))
+        })
     })
 })
